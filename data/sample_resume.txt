@@ -1,0 +1,22 @@
+FICTIONAL DEMO RESUME — NOT THE USER'S BACKGROUND
+Alex Demo | AI Engineer
+alex@example.com | github.com/example
+
+SUMMARY
+Python developer building machine learning applications and retrieval augmented generation (RAG) prototypes.
+
+SKILLS
+Python, SQL, pandas, NumPy, scikit-learn, PyTorch, Hugging Face, embeddings, LangChain, FastAPI, Docker, Git.
+
+PROJECTS
+Knowledge assistant
+Built a RAG pipeline with LangChain and sentence embeddings to retrieve passages from technical documentation.
+Created a FastAPI endpoint and packaged the application with Docker.
+Compared retrieval quality on 40 hand-written questions and documented failure cases.
+
+Resume matching application
+Implemented text extraction, skill matching and explainable analysis in Python.
+Added unit testing for input validation and API response behavior.
+
+EDUCATION
+Bachelor of Technology in Computer Science — fictional example.

@@ -1,0 +1,100 @@
+{
+  "description": "Hand-authored synthetic regression set. These examples verify aliases, skill gaps, token boundaries, and basic ordering; they do not measure recruiting accuracy, ATS compatibility, or hiring outcomes.",
+  "cases": [
+    {
+      "id": "ai_engineer_core",
+      "resume_text": "AI engineer. Built machine learning models in Python and PyTorch. Deployed a FastAPI inference service with Docker and AWS. Evaluated models against a held-out dataset.",
+      "jd_text": "AI engineer required: Python, PyTorch, FastAPI, Docker, AWS and machine learning. Build and deploy model inference services.",
+      "expected_matched": ["python", "pytorch", "fastapi", "docker", "aws", "machine learning"],
+      "expected_missing": []
+    },
+    {
+      "id": "unrelated_resume",
+      "resume_text": "Graphic designer creating illustrations, print layouts and brand identities. Managed photography and coordinated creative reviews for marketing campaigns.",
+      "jd_text": "AI engineer required: Python, PyTorch, FastAPI, Docker, AWS and machine learning. Build and deploy model inference services.",
+      "expected_matched": [],
+      "expected_missing": ["python", "pytorch", "fastapi", "docker", "aws", "machine learning"],
+      "expected_not_matched": ["python", "pytorch", "fastapi", "docker", "aws", "machine learning"]
+    },
+    {
+      "id": "data_science_aliases",
+      "resume_text": "Data scientist using Python, sklearn, pandas and NumPy. Trained supervised machine learning models and stored datasets in Postgres.",
+      "jd_text": "Required skills: Python, scikit-learn, pandas, numpy and PostgreSQL. Build machine learning models for tabular data.",
+      "expected_matched": ["python", "scikit-learn", "pandas", "numpy", "postgresql", "machine learning"],
+      "expected_missing": []
+    },
+    {
+      "id": "mlops_gaps",
+      "resume_text": "Python engineer. Containerized a FastAPI model service with Docker and deployed it on AWS. Used Git for source control.",
+      "jd_text": "Required: Python, Docker, Kubernetes and Terraform. Preferred: FastAPI and AWS. Operate reliable model deployments.",
+      "expected_matched": ["python", "docker", "fastapi", "aws"],
+      "expected_missing": ["kubernetes", "terraform"]
+    },
+    {
+      "id": "cloud_aliases",
+      "resume_text": "Platform engineer running Docker workloads on k8s and Amazon Web Services. Automated infrastructure using Terraform and Python.",
+      "jd_text": "Must have Kubernetes, AWS, Docker, Terraform and Python for infrastructure automation.",
+      "expected_matched": ["kubernetes", "aws", "docker", "terraform", "python"],
+      "expected_missing": []
+    },
+    {
+      "id": "javascript_is_not_java",
+      "resume_text": "Frontend developer building dashboards with JavaScript, TypeScript and React. Worked on browser interfaces and accessibility.",
+      "jd_text": "Backend role requiring Java, Python and PostgreSQL. Build data services.",
+      "expected_matched": [],
+      "expected_missing": ["java", "python", "postgresql"],
+      "expected_not_matched": ["java", "python", "postgresql"]
+    },
+    {
+      "id": "punctuated_languages",
+      "resume_text": "Software engineer delivering C++ inference runtimes and C# tooling. Wrote Python evaluation scripts.",
+      "jd_text": "Required: C++, C# and Python. Build efficient model integration tools.",
+      "expected_matched": ["c++", "c#", "python"],
+      "expected_missing": []
+    },
+    {
+      "id": "generative_ai_aliases",
+      "resume_text": "AI engineer building retrieval augmented generation systems for large language models. Developed natural language processing pipelines in Python.",
+      "jd_text": "Required: Python, RAG, LLMs and NLP. Deliver evaluated question-answering systems.",
+      "expected_matched": ["python", "rag", "llms", "nlp"],
+      "expected_missing": []
+    },
+    {
+      "id": "negated_experience_is_not_evidence",
+      "resume_text": "Built Python data analysis scripts. No experience with Docker and Kubernetes.",
+      "jd_text": "Required: Python, Docker and Kubernetes for model deployment.",
+      "expected_matched": ["python"],
+      "expected_missing": ["docker", "kubernetes"],
+      "expected_not_matched": ["docker", "kubernetes"]
+    },
+    {
+      "id": "self_reported_skills_are_not_evidence",
+      "resume_text": "Built and evaluated machine learning models using Python and PyTorch.",
+      "jd_text": "Required: Python, PyTorch, Docker and Kubernetes for deployed inference services.",
+      "extra_skills": ["Docker", "Kubernetes"],
+      "expected_matched": ["python", "pytorch"],
+      "expected_missing": ["docker", "kubernetes"],
+      "expected_not_matched": ["docker", "kubernetes"]
+    },
+    {
+      "id": "keyword_substrings_are_not_skills",
+      "resume_text": "Research assistant studied the lifecycle of pythons and compiled a photographic atlas. Authored a rustproofing materials report and a reaction kinetics summary.",
+      "jd_text": "Required technical skills: Python, Rust and React. Implement production applications.",
+      "expected_matched": [],
+      "expected_missing": ["python", "rust", "react"],
+      "expected_not_matched": ["python", "rust", "react"]
+    }
+  ],
+  "ordering_constraints": [
+    {
+      "higher": "ai_engineer_core",
+      "lower": "unrelated_resume",
+      "field": "overall_match_percentage"
+    },
+    {
+      "higher": "ai_engineer_core",
+      "lower": "unrelated_resume",
+      "field": "skill_match_percentage"
+    }
+  ]
+}

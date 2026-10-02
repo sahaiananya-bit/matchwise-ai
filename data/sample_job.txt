@@ -1,0 +1,16 @@
+AI Engineer — Document Intelligence
+
+Required qualifications
+- Strong Python and SQL skills.
+- Build retrieval augmented generation (RAG) applications with embeddings and vector databases.
+- Experience with PyTorch, Hugging Face and large language models (LLMs).
+- Serve models through FastAPI and containerize applications with Docker.
+- Develop model evaluation workflows and write automated tests.
+
+Preferred qualifications
+- Experience with LangChain, MLflow and AWS.
+- Familiarity with Kubernetes, CI/CD and model monitoring.
+
+Responsibilities
+Build a document intelligence assistant with reliable retrieval, observable performance and clear evaluation reports.
+Collaborate with product teams to understand failure cases and improve answer quality.
