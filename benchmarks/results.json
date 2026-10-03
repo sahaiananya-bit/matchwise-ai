@@ -1,0 +1,888 @@
+{
+  "created_at_utc": "2026-10-03T13:50:49.582609+00:00",
+  "fixture_sha256": "ae1d857a471afe539e821c4052e2d82c979d49d6bdbe4f9f6cae36d2fe5f56c4",
+  "provenance": "AI-authored fictional contrastive examples, labels fixed before the first benchmark run. Not independently annotated or representative of applicants.",
+  "label_rule": "For the same requirement, preferred contains more direct evidence of performing the requested work than alternative. This is document relevance, not candidate quality.",
+  "environment": {
+    "python": "3.12.14",
+    "platform": "Windows-11-10.0.26220-SP0",
+    "packages": {
+      "sentence-transformers": "5.2.2",
+      "torch": "2.14.1",
+      "transformers": "5.18.0",
+      "numpy": "2.5.3"
+    }
+  },
+  "model": {
+    "model_id": "sentence-transformers/all-MiniLM-L6-v2",
+    "revision": "7dbbc90392e2f80f3d3c277d6e90027e55de9125",
+    "device": "cpu"
+  },
+  "model_load_seconds": 9.751,
+  "timing": "Median complete analyze() time per pair, warmed model, sequential CPU execution. Includes skill extraction; excludes load and download. Not a serving SLA.",
+  "repeats": 3,
+  "methods": {
+    "lexical_tfidf": {
+      "summary": {
+        "content_similarity": {
+          "correct": 8,
+          "ties": 0,
+          "total": 20,
+          "strict_pairwise_accuracy": 0.4
+        },
+        "overall_match_percentage": {
+          "correct": 11,
+          "ties": 0,
+          "total": 20,
+          "strict_pairwise_accuracy": 0.55
+        }
+      },
+      "by_category": {
+        "direct": {
+          "content_similarity": {
+            "correct": 4,
+            "ties": 0,
+            "total": 4,
+            "strict_pairwise_accuracy": 1.0
+          },
+          "overall_match_percentage": {
+            "correct": 4,
+            "ties": 0,
+            "total": 4,
+            "strict_pairwise_accuracy": 1.0
+          }
+        },
+        "paraphrase": {
+          "content_similarity": {
+            "correct": 0,
+            "ties": 0,
+            "total": 4,
+            "strict_pairwise_accuracy": 0.0
+          },
+          "overall_match_percentage": {
+            "correct": 0,
+            "ties": 0,
+            "total": 4,
+            "strict_pairwise_accuracy": 0.0
+          }
+        },
+        "negation": {
+          "content_similarity": {
+            "correct": 0,
+            "ties": 0,
+            "total": 4,
+            "strict_pairwise_accuracy": 0.0
+          },
+          "overall_match_percentage": {
+            "correct": 3,
+            "ties": 0,
+            "total": 4,
+            "strict_pairwise_accuracy": 0.75
+          }
+        },
+        "partial": {
+          "content_similarity": {
+            "correct": 4,
+            "ties": 0,
+            "total": 4,
+            "strict_pairwise_accuracy": 1.0
+          },
+          "overall_match_percentage": {
+            "correct": 4,
+            "ties": 0,
+            "total": 4,
+            "strict_pairwise_accuracy": 1.0
+          }
+        },
+        "keyword_trap": {
+          "content_similarity": {
+            "correct": 0,
+            "ties": 0,
+            "total": 4,
+            "strict_pairwise_accuracy": 0.0
+          },
+          "overall_match_percentage": {
+            "correct": 0,
+            "ties": 0,
+            "total": 4,
+            "strict_pairwise_accuracy": 0.0
+          }
+        }
+      },
+      "median_ms": 0.452,
+      "cases": [
+        {
+          "id": "api_exact",
+          "category": "direct",
+          "reason": "Direct implementation of the requested stack.",
+          "preferred": {
+            "content_similarity": 50.7,
+            "overall_match_percentage": 80.28,
+            "skill_match_percentage": 100.0,
+            "median_ms": 0.512
+          },
+          "alternative": {
+            "content_similarity": 0.0,
+            "overall_match_percentage": 0.0,
+            "skill_match_percentage": 0.0,
+            "median_ms": 0.42
+          }
+        },
+        {
+          "id": "rag_exact",
+          "category": "direct",
+          "reason": "Evidence of the named retrieval stack.",
+          "preferred": {
+            "content_similarity": 25.43,
+            "overall_match_percentage": 70.17,
+            "skill_match_percentage": 100.0,
+            "median_ms": 0.501
+          },
+          "alternative": {
+            "content_similarity": 0.0,
+            "overall_match_percentage": 0.0,
+            "skill_match_percentage": 0.0,
+            "median_ms": 0.455
+          }
+        },
+        {
+          "id": "cloud_exact",
+          "category": "direct",
+          "reason": "Evidence of deployment on the requested platform.",
+          "preferred": {
+            "content_similarity": 40.5,
+            "overall_match_percentage": 76.2,
+            "skill_match_percentage": 100.0,
+            "median_ms": 0.486
+          },
+          "alternative": {
+            "content_similarity": 0.0,
+            "overall_match_percentage": 0.0,
+            "skill_match_percentage": 0.0,
+            "median_ms": 0.386
+          }
+        },
+        {
+          "id": "sql_exact",
+          "category": "direct",
+          "reason": "Direct database optimization experience.",
+          "preferred": {
+            "content_similarity": 48.72,
+            "overall_match_percentage": 79.49,
+            "skill_match_percentage": 100.0,
+            "median_ms": 0.412
+          },
+          "alternative": {
+            "content_similarity": 0.0,
+            "overall_match_percentage": 0.0,
+            "skill_match_percentage": 0.0,
+            "median_ms": 0.359
+          }
+        },
+        {
+          "id": "retrieval_paraphrase",
+          "category": "paraphrase",
+          "reason": "Searching manuals and citing evidence expresses grounded retrieval.",
+          "preferred": {
+            "content_similarity": 0.0,
+            "overall_match_percentage": 0.0,
+            "skill_match_percentage": null,
+            "median_ms": 0.551
+          },
+          "alternative": {
+            "content_similarity": 10.49,
+            "overall_match_percentage": 10.49,
+            "skill_match_percentage": null,
+            "median_ms": 0.524
+          }
+        },
+        {
+          "id": "latency_paraphrase",
+          "category": "paraphrase",
+          "reason": "Actual optimization outweighs a glossary repeating the requirement.",
+          "preferred": {
+            "content_similarity": 0.0,
+            "overall_match_percentage": 0.0,
+            "skill_match_percentage": null,
+            "median_ms": 0.461
+          },
+          "alternative": {
+            "content_similarity": 48.72,
+            "overall_match_percentage": 48.72,
+            "skill_match_percentage": null,
+            "median_ms": 0.379
+          }
+        },
+        {
+          "id": "speech_paraphrase",
+          "category": "paraphrase",
+          "reason": "Streaming speech recognition performs the requested conversion.",
+          "preferred": {
+            "content_similarity": 0.0,
+            "overall_match_percentage": 0.0,
+            "skill_match_percentage": null,
+            "median_ms": 0.452
+          },
+          "alternative": {
+            "content_similarity": 4.1,
+            "overall_match_percentage": 4.1,
+            "skill_match_percentage": null,
+            "median_ms": 0.407
+          }
+        },
+        {
+          "id": "observability_paraphrase",
+          "category": "paraphrase",
+          "reason": "Billing metrics and timing traces support cost and latency diagnosis.",
+          "preferred": {
+            "content_similarity": 0.0,
+            "overall_match_percentage": 0.0,
+            "skill_match_percentage": null,
+            "median_ms": 0.464
+          },
+          "alternative": {
+            "content_similarity": 10.32,
+            "overall_match_percentage": 10.32,
+            "skill_match_percentage": null,
+            "median_ms": 0.386
+          }
+        },
+        {
+          "id": "negated_python",
+          "category": "negation",
+          "reason": "Explicitly denied experience is weaker evidence.",
+          "preferred": {
+            "content_similarity": 34.08,
+            "overall_match_percentage": 73.63,
+            "skill_match_percentage": 100.0,
+            "median_ms": 0.451
+          },
+          "alternative": {
+            "content_similarity": 79.95,
+            "overall_match_percentage": 31.98,
+            "skill_match_percentage": 0.0,
+            "median_ms": 0.451
+          }
+        },
+        {
+          "id": "future_rag",
+          "category": "negation",
+          "reason": "Future learning intentions do not establish completed work.",
+          "preferred": {
+            "content_similarity": 43.93,
+            "overall_match_percentage": 77.57,
+            "skill_match_percentage": 100.0,
+            "median_ms": 0.415
+          },
+          "alternative": {
+            "content_similarity": 49.03,
+            "overall_match_percentage": 79.61,
+            "skill_match_percentage": 100.0,
+            "median_ms": 0.43
+          }
+        },
+        {
+          "id": "negated_cloud",
+          "category": "negation",
+          "reason": "Completed deployments outweigh an explicit denial.",
+          "preferred": {
+            "content_similarity": 29.53,
+            "overall_match_percentage": 71.81,
+            "skill_match_percentage": 100.0,
+            "median_ms": 0.457
+          },
+          "alternative": {
+            "content_similarity": 74.74,
+            "overall_match_percentage": 29.9,
+            "skill_match_percentage": 0.0,
+            "median_ms": 0.435
+          }
+        },
+        {
+          "id": "planned_sql",
+          "category": "negation",
+          "reason": "Implemented database work outweighs planned learning.",
+          "preferred": {
+            "content_similarity": 13.05,
+            "overall_match_percentage": 65.22,
+            "skill_match_percentage": 100.0,
+            "median_ms": 0.432
+          },
+          "alternative": {
+            "content_similarity": 68.54,
+            "overall_match_percentage": 27.42,
+            "skill_match_percentage": 0.0,
+            "median_ms": 0.429
+          }
+        },
+        {
+          "id": "partial_backend",
+          "category": "partial",
+          "reason": "All requested technologies are evidenced instead of only Python.",
+          "preferred": {
+            "content_similarity": 43.93,
+            "overall_match_percentage": 77.57,
+            "skill_match_percentage": 100.0,
+            "median_ms": 0.408
+          },
+          "alternative": {
+            "content_similarity": 7.36,
+            "overall_match_percentage": 22.94,
+            "skill_match_percentage": 33.33,
+            "median_ms": 0.379
+          }
+        },
+        {
+          "id": "partial_retrieval",
+          "category": "partial",
+          "reason": "Retrieval implementation plus evaluation covers more requirements.",
+          "preferred": {
+            "content_similarity": 22.02,
+            "overall_match_percentage": 68.81,
+            "skill_match_percentage": 100.0,
+            "median_ms": 0.44
+          },
+          "alternative": {
+            "content_similarity": 6.26,
+            "overall_match_percentage": 32.5,
+            "skill_match_percentage": 50.0,
+            "median_ms": 0.428
+          }
+        },
+        {
+          "id": "partial_cloud",
+          "category": "partial",
+          "reason": "Deployment and automation exceed platform exposure.",
+          "preferred": {
+            "content_similarity": 31.19,
+            "overall_match_percentage": 72.48,
+            "skill_match_percentage": 100.0,
+            "median_ms": 0.461
+          },
+          "alternative": {
+            "content_similarity": 6.8,
+            "overall_match_percentage": 22.72,
+            "skill_match_percentage": 33.33,
+            "median_ms": 0.416
+          }
+        },
+        {
+          "id": "partial_ml",
+          "category": "partial",
+          "reason": "Training and evaluation evidence matches more of the requirement.",
+          "preferred": {
+            "content_similarity": 47.71,
+            "overall_match_percentage": 79.09,
+            "skill_match_percentage": 100.0,
+            "median_ms": 0.525
+          },
+          "alternative": {
+            "content_similarity": 7.78,
+            "overall_match_percentage": 23.11,
+            "skill_match_percentage": 33.33,
+            "median_ms": 0.42
+          }
+        },
+        {
+          "id": "keyword_glossary",
+          "category": "keyword_trap",
+          "reason": "Implementation evidence exceeds keyword repetition.",
+          "preferred": {
+            "content_similarity": 9.8,
+            "overall_match_percentage": 63.92,
+            "skill_match_percentage": 100.0,
+            "median_ms": 0.633
+          },
+          "alternative": {
+            "content_similarity": 45.26,
+            "overall_match_percentage": 78.11,
+            "skill_match_percentage": 100.0,
+            "median_ms": 0.662
+          }
+        },
+        {
+          "id": "keyword_job_copy",
+          "category": "keyword_trap",
+          "reason": "A copied advertisement does not establish experience.",
+          "preferred": {
+            "content_similarity": 10.47,
+            "overall_match_percentage": 64.19,
+            "skill_match_percentage": 100.0,
+            "median_ms": 0.622
+          },
+          "alternative": {
+            "content_similarity": 74.35,
+            "overall_match_percentage": 89.74,
+            "skill_match_percentage": 100.0,
+            "median_ms": 0.759
+          }
+        },
+        {
+          "id": "keyword_definition",
+          "category": "keyword_trap",
+          "reason": "Performed evaluation outweighs quoting its definition.",
+          "preferred": {
+            "content_similarity": 0.0,
+            "overall_match_percentage": 0.0,
+            "skill_match_percentage": null,
+            "median_ms": 0.561
+          },
+          "alternative": {
+            "content_similarity": 80.93,
+            "overall_match_percentage": 80.93,
+            "skill_match_percentage": null,
+            "median_ms": 0.543
+          }
+        },
+        {
+          "id": "keyword_course",
+          "category": "keyword_trap",
+          "reason": "An implemented call integration is stronger than a saved course title.",
+          "preferred": {
+            "content_similarity": 0.0,
+            "overall_match_percentage": 0.0,
+            "skill_match_percentage": null,
+            "median_ms": 0.557
+          },
+          "alternative": {
+            "content_similarity": 76.76,
+            "overall_match_percentage": 76.76,
+            "skill_match_percentage": null,
+            "median_ms": 0.578
+          }
+        }
+      ]
+    },
+    "semantic": {
+      "summary": {
+        "content_similarity": {
+          "correct": 11,
+          "ties": 0,
+          "total": 20,
+          "strict_pairwise_accuracy": 0.55
+        },
+        "overall_match_percentage": {
+          "correct": 13,
+          "ties": 0,
+          "total": 20,
+          "strict_pairwise_accuracy": 0.65
+        }
+      },
+      "by_category": {
+        "direct": {
+          "content_similarity": {
+            "correct": 4,
+            "ties": 0,
+            "total": 4,
+            "strict_pairwise_accuracy": 1.0
+          },
+          "overall_match_percentage": {
+            "correct": 4,
+            "ties": 0,
+            "total": 4,
+            "strict_pairwise_accuracy": 1.0
+          }
+        },
+        "paraphrase": {
+          "content_similarity": {
+            "correct": 1,
+            "ties": 0,
+            "total": 4,
+            "strict_pairwise_accuracy": 0.25
+          },
+          "overall_match_percentage": {
+            "correct": 1,
+            "ties": 0,
+            "total": 4,
+            "strict_pairwise_accuracy": 0.25
+          }
+        },
+        "negation": {
+          "content_similarity": {
+            "correct": 2,
+            "ties": 0,
+            "total": 4,
+            "strict_pairwise_accuracy": 0.5
+          },
+          "overall_match_percentage": {
+            "correct": 4,
+            "ties": 0,
+            "total": 4,
+            "strict_pairwise_accuracy": 1.0
+          }
+        },
+        "partial": {
+          "content_similarity": {
+            "correct": 4,
+            "ties": 0,
+            "total": 4,
+            "strict_pairwise_accuracy": 1.0
+          },
+          "overall_match_percentage": {
+            "correct": 4,
+            "ties": 0,
+            "total": 4,
+            "strict_pairwise_accuracy": 1.0
+          }
+        },
+        "keyword_trap": {
+          "content_similarity": {
+            "correct": 0,
+            "ties": 0,
+            "total": 4,
+            "strict_pairwise_accuracy": 0.0
+          },
+          "overall_match_percentage": {
+            "correct": 0,
+            "ties": 0,
+            "total": 4,
+            "strict_pairwise_accuracy": 0.0
+          }
+        }
+      },
+      "median_ms": 12.717,
+      "cases": [
+        {
+          "id": "api_exact",
+          "category": "direct",
+          "reason": "Direct implementation of the requested stack.",
+          "preferred": {
+            "content_similarity": 92.94,
+            "overall_match_percentage": 97.17,
+            "skill_match_percentage": 100.0,
+            "median_ms": 12.81
+          },
+          "alternative": {
+            "content_similarity": 0.0,
+            "overall_match_percentage": 0.0,
+            "skill_match_percentage": 0.0,
+            "median_ms": 16.438
+          }
+        },
+        {
+          "id": "rag_exact",
+          "category": "direct",
+          "reason": "Evidence of the named retrieval stack.",
+          "preferred": {
+            "content_similarity": 67.05,
+            "overall_match_percentage": 86.82,
+            "skill_match_percentage": 100.0,
+            "median_ms": 16.819
+          },
+          "alternative": {
+            "content_similarity": 14.8,
+            "overall_match_percentage": 5.92,
+            "skill_match_percentage": 0.0,
+            "median_ms": 12.442
+          }
+        },
+        {
+          "id": "cloud_exact",
+          "category": "direct",
+          "reason": "Evidence of deployment on the requested platform.",
+          "preferred": {
+            "content_similarity": 93.79,
+            "overall_match_percentage": 97.51,
+            "skill_match_percentage": 100.0,
+            "median_ms": 12.239
+          },
+          "alternative": {
+            "content_similarity": 3.08,
+            "overall_match_percentage": 1.23,
+            "skill_match_percentage": 0.0,
+            "median_ms": 11.512
+          }
+        },
+        {
+          "id": "sql_exact",
+          "category": "direct",
+          "reason": "Direct database optimization experience.",
+          "preferred": {
+            "content_similarity": 79.88,
+            "overall_match_percentage": 91.95,
+            "skill_match_percentage": 100.0,
+            "median_ms": 12.761
+          },
+          "alternative": {
+            "content_similarity": 0.0,
+            "overall_match_percentage": 0.0,
+            "skill_match_percentage": 0.0,
+            "median_ms": 12.185
+          }
+        },
+        {
+          "id": "retrieval_paraphrase",
+          "category": "paraphrase",
+          "reason": "Searching manuals and citing evidence expresses grounded retrieval.",
+          "preferred": {
+            "content_similarity": 52.05,
+            "overall_match_percentage": 52.05,
+            "skill_match_percentage": null,
+            "median_ms": 12.829
+          },
+          "alternative": {
+            "content_similarity": 57.69,
+            "overall_match_percentage": 57.69,
+            "skill_match_percentage": null,
+            "median_ms": 12.278
+          }
+        },
+        {
+          "id": "latency_paraphrase",
+          "category": "paraphrase",
+          "reason": "Actual optimization outweighs a glossary repeating the requirement.",
+          "preferred": {
+            "content_similarity": 41.47,
+            "overall_match_percentage": 41.47,
+            "skill_match_percentage": null,
+            "median_ms": 12.939
+          },
+          "alternative": {
+            "content_similarity": 78.21,
+            "overall_match_percentage": 78.21,
+            "skill_match_percentage": null,
+            "median_ms": 12.221
+          }
+        },
+        {
+          "id": "speech_paraphrase",
+          "category": "paraphrase",
+          "reason": "Streaming speech recognition performs the requested conversion.",
+          "preferred": {
+            "content_similarity": 52.04,
+            "overall_match_percentage": 52.04,
+            "skill_match_percentage": null,
+            "median_ms": 11.558
+          },
+          "alternative": {
+            "content_similarity": 35.16,
+            "overall_match_percentage": 35.16,
+            "skill_match_percentage": null,
+            "median_ms": 11.458
+          }
+        },
+        {
+          "id": "observability_paraphrase",
+          "category": "paraphrase",
+          "reason": "Billing metrics and timing traces support cost and latency diagnosis.",
+          "preferred": {
+            "content_similarity": 33.68,
+            "overall_match_percentage": 33.68,
+            "skill_match_percentage": null,
+            "median_ms": 13.692
+          },
+          "alternative": {
+            "content_similarity": 46.44,
+            "overall_match_percentage": 46.44,
+            "skill_match_percentage": null,
+            "median_ms": 11.627
+          }
+        },
+        {
+          "id": "negated_python",
+          "category": "negation",
+          "reason": "Explicitly denied experience is weaker evidence.",
+          "preferred": {
+            "content_similarity": 79.72,
+            "overall_match_percentage": 91.89,
+            "skill_match_percentage": 100.0,
+            "median_ms": 12.065
+          },
+          "alternative": {
+            "content_similarity": 90.17,
+            "overall_match_percentage": 36.07,
+            "skill_match_percentage": 0.0,
+            "median_ms": 12.3
+          }
+        },
+        {
+          "id": "future_rag",
+          "category": "negation",
+          "reason": "Future learning intentions do not establish completed work.",
+          "preferred": {
+            "content_similarity": 77.08,
+            "overall_match_percentage": 90.83,
+            "skill_match_percentage": 100.0,
+            "median_ms": 12.996
+          },
+          "alternative": {
+            "content_similarity": 74.38,
+            "overall_match_percentage": 89.75,
+            "skill_match_percentage": 100.0,
+            "median_ms": 15.987
+          }
+        },
+        {
+          "id": "negated_cloud",
+          "category": "negation",
+          "reason": "Completed deployments outweigh an explicit denial.",
+          "preferred": {
+            "content_similarity": 83.21,
+            "overall_match_percentage": 93.28,
+            "skill_match_percentage": 100.0,
+            "median_ms": 15.217
+          },
+          "alternative": {
+            "content_similarity": 78.85,
+            "overall_match_percentage": 31.54,
+            "skill_match_percentage": 0.0,
+            "median_ms": 12.654
+          }
+        },
+        {
+          "id": "planned_sql",
+          "category": "negation",
+          "reason": "Implemented database work outweighs planned learning.",
+          "preferred": {
+            "content_similarity": 70.1,
+            "overall_match_percentage": 88.04,
+            "skill_match_percentage": 100.0,
+            "median_ms": 12.613
+          },
+          "alternative": {
+            "content_similarity": 82.08,
+            "overall_match_percentage": 32.83,
+            "skill_match_percentage": 0.0,
+            "median_ms": 11.874
+          }
+        },
+        {
+          "id": "partial_backend",
+          "category": "partial",
+          "reason": "All requested technologies are evidenced instead of only Python.",
+          "preferred": {
+            "content_similarity": 86.82,
+            "overall_match_percentage": 94.73,
+            "skill_match_percentage": 100.0,
+            "median_ms": 11.552
+          },
+          "alternative": {
+            "content_similarity": 19.01,
+            "overall_match_percentage": 27.6,
+            "skill_match_percentage": 33.33,
+            "median_ms": 11.287
+          }
+        },
+        {
+          "id": "partial_retrieval",
+          "category": "partial",
+          "reason": "Retrieval implementation plus evaluation covers more requirements.",
+          "preferred": {
+            "content_similarity": 49.18,
+            "overall_match_percentage": 79.67,
+            "skill_match_percentage": 100.0,
+            "median_ms": 13.073
+          },
+          "alternative": {
+            "content_similarity": 23.12,
+            "overall_match_percentage": 39.25,
+            "skill_match_percentage": 50.0,
+            "median_ms": 12.14
+          }
+        },
+        {
+          "id": "partial_cloud",
+          "category": "partial",
+          "reason": "Deployment and automation exceed platform exposure.",
+          "preferred": {
+            "content_similarity": 73.35,
+            "overall_match_percentage": 89.34,
+            "skill_match_percentage": 100.0,
+            "median_ms": 12.529
+          },
+          "alternative": {
+            "content_similarity": 46.04,
+            "overall_match_percentage": 38.42,
+            "skill_match_percentage": 33.33,
+            "median_ms": 11.811
+          }
+        },
+        {
+          "id": "partial_ml",
+          "category": "partial",
+          "reason": "Training and evaluation evidence matches more of the requirement.",
+          "preferred": {
+            "content_similarity": 70.34,
+            "overall_match_percentage": 88.14,
+            "skill_match_percentage": 100.0,
+            "median_ms": 12.535
+          },
+          "alternative": {
+            "content_similarity": 26.14,
+            "overall_match_percentage": 30.46,
+            "skill_match_percentage": 33.33,
+            "median_ms": 11.643
+          }
+        },
+        {
+          "id": "keyword_glossary",
+          "category": "keyword_trap",
+          "reason": "Implementation evidence exceeds keyword repetition.",
+          "preferred": {
+            "content_similarity": 57.2,
+            "overall_match_percentage": 82.88,
+            "skill_match_percentage": 100.0,
+            "median_ms": 15.583
+          },
+          "alternative": {
+            "content_similarity": 67.57,
+            "overall_match_percentage": 87.03,
+            "skill_match_percentage": 100.0,
+            "median_ms": 16.927
+          }
+        },
+        {
+          "id": "keyword_job_copy",
+          "category": "keyword_trap",
+          "reason": "A copied advertisement does not establish experience.",
+          "preferred": {
+            "content_similarity": 44.1,
+            "overall_match_percentage": 77.64,
+            "skill_match_percentage": 100.0,
+            "median_ms": 17.131
+          },
+          "alternative": {
+            "content_similarity": 89.86,
+            "overall_match_percentage": 95.94,
+            "skill_match_percentage": 100.0,
+            "median_ms": 17.893
+          }
+        },
+        {
+          "id": "keyword_definition",
+          "category": "keyword_trap",
+          "reason": "Performed evaluation outweighs quoting its definition.",
+          "preferred": {
+            "content_similarity": 65.65,
+            "overall_match_percentage": 65.65,
+            "skill_match_percentage": null,
+            "median_ms": 13.402
+          },
+          "alternative": {
+            "content_similarity": 87.89,
+            "overall_match_percentage": 87.89,
+            "skill_match_percentage": null,
+            "median_ms": 12.781
+          }
+        },
+        {
+          "id": "keyword_course",
+          "category": "keyword_trap",
+          "reason": "An implemented call integration is stronger than a saved course title.",
+          "preferred": {
+            "content_similarity": 59.37,
+            "overall_match_percentage": 59.37,
+            "skill_match_percentage": null,
+            "median_ms": 13.253
+          },
+          "alternative": {
+            "content_similarity": 92.61,
+            "overall_match_percentage": 92.61,
+            "skill_match_percentage": null,
+            "median_ms": 14.057
+          }
+        }
+      ]
+    }
+  }
+}

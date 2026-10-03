@@ -33,6 +33,17 @@ class AppTests(unittest.TestCase):
         self.assertTrue(any("both your resume" in item.value for item in self.app.error))
         self.assertEqual(len(self.app.metric), 0)
 
+    def test_evaluation_page_preserves_resume_draft(self):
+        self.analyze_demo()
+        resume = self.app.session_state["resume_text"]
+        self.app.radio(key="workspace").set_value("Evaluation").run()
+        self.assert_healthy()
+        self.assertTrue(any("measured comparison" in item.value for item in self.app.markdown))
+        self.app.radio(key="workspace").set_value("Resume analysis").run()
+        self.assert_healthy()
+        self.assertEqual(self.app.session_state["resume_text"], resume)
+        self.assertEqual(len(self.app.metric), 4)
+
     def test_editing_input_hides_old_results_and_downloads(self):
         self.analyze_demo()
         self.assertGreaterEqual(len(self.app.get("download_button")), 2)

@@ -95,7 +95,9 @@ def clear_session():
 @st.cache_resource(show_spinner=False)
 def get_matcher(use_semantic):
     """Cache the current engine's model resources, never document results."""
-    return ResumeJDMatcher(use_semantic=use_semantic)
+    local_model = ROOT / "models/all-MiniLM-L6-v2"
+    model_name = str(local_model) if local_model.is_dir() else "all-MiniLM-L6-v2"
+    return ResumeJDMatcher(model_name=model_name, use_semantic=use_semantic)
 
 
 def digest(*values):
@@ -125,7 +127,7 @@ with st.sidebar:
     st.markdown('<div class="brand"><span>◈</span> matchwise</div>', unsafe_allow_html=True)
     st.caption("YOUR NEXT ROLE, WITH EVIDENCE")
     st.divider()
-    page = st.radio("Workspace", ["Resume analysis", "Compare roles"], key="workspace", label_visibility="collapsed")
+    page = st.radio("Workspace", ["Resume analysis", "Compare roles", "Evaluation"], key="workspace", label_visibility="collapsed")
     st.divider()
     st.markdown("**Career focus**")
     role = st.selectbox("Target role", ["AI Engineer", "Machine Learning Engineer", "Data Scientist", "Software Engineer"])
@@ -139,10 +141,22 @@ with st.sidebar:
     st.button("Try the AI engineer demo", on_click=load_demo, width="stretch")
     st.button("Clear session data", on_click=clear_session, width="stretch")
     st.caption("Session only · No external AI API calls\n\nUploaded files are processed in memory. Downloads contain resume excerpts.")
+    st.link_button("View source on GitHub", "https://github.com/sahaiananya-bit/matchwise-ai", width="stretch")
 
 st.markdown('<div class="eyebrow">CAREER INTELLIGENCE / AI ENGINEERING</div>', unsafe_allow_html=True)
 
-if page == "Compare roles":
+if page == "Evaluation":
+    st.title("How well does matching work?")
+    st.caption("Published measurements on fictional examples. These are not live results for your resume.")
+    results_path = ROOT / "benchmarks/RESULTS.md"
+    if results_path.is_file():
+        st.markdown(results_path.read_text(encoding="utf-8").replace(
+            "[Raw results](results.json) · [Cases and labels](ranking_cases.json)",
+            "[Raw results](https://github.com/sahaiananya-bit/matchwise-ai/blob/main/benchmarks/results.json) · "
+            "[Cases and labels](https://github.com/sahaiananya-bit/matchwise-ai/blob/main/benchmarks/ranking_cases.json)"))
+    else:
+        st.info("The comparison has not been run in this checkout yet. Run scripts/compare_methods.py after installing the optional model.")
+elif page == "Compare roles":
     st.title("Choose where to focus.")
     st.write("Compare saved analyses from this session. Save a result after analyzing a job description.")
     saved = st.session_state.saved

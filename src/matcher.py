@@ -107,7 +107,7 @@ class ResumeJDMatcher:
         self._model_attempted = True
         try:
             from sentence_transformers import SentenceTransformer
-            self.model = SentenceTransformer(self.model_name, local_files_only=True, trust_remote_code=False)
+            self.model = SentenceTransformer(self.model_name, local_files_only=True, trust_remote_code=False, device="cpu")
         except Exception:
             self._model_warning = (
                 "The optional semantic model is unavailable locally. Used local TF-IDF wording comparison; "

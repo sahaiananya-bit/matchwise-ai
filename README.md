@@ -1,5 +1,43 @@
 # Matchwise · Resume–JD intelligence
 
+[![Checks](https://github.com/sahaiananya-bit/matchwise-ai/actions/workflows/ci.yml/badge.svg)](https://github.com/sahaiananya-bit/matchwise-ai/actions/workflows/ci.yml)
+
+**Explainable resume matching, with evidence you can inspect and methods you can compare.**
+
+[Measured TF-IDF vs MiniLM comparison](benchmarks/RESULTS.md) · [Public demo deployment guide](docs/DEPLOYMENT.md) · [Source code](src/matcher.py)
+
+**Demo status:** the app runs locally; a public deployment URL has not yet been verified. Follow the deployment guide to publish it. No API key is needed for the default demo.
+
+## Try it in two minutes
+
+Start the app using the instructions below, then select **Try the AI engineer demo → Analyze my fit**. Inspect the matched and missing skills, open the supporting evidence, download a report, and save a role for comparison. Open **Evaluation** to see the published method comparison and its failure cases. All included examples are fictional.
+
+## What this demonstrates
+
+| Engineering decision | Implementation |
+| --- | --- |
+| Inspectable baseline | TF-IDF unigram/bigram cosine over resume and requirement passages |
+| Semantic alternative | CPU inference with `sentence-transformers/all-MiniLM-L6-v2`, explicitly downloaded during setup |
+| Explainable scoring | Shared skill taxonomy, required/preferred weighting and source passages |
+| Evaluation discipline | Fixed contrastive examples, separate content/overall metrics, timing and published failures |
+| Document handling | PDF text extraction, bounded DOCX parsing and TXT decoding |
+| Delivery | Streamlit interface, session-scoped state, CI checks and Docker health check |
+
+```mermaid
+flowchart LR
+  A[PDF / DOCX / TXT / pasted resume] --> B[Extract and validate text]
+  C[Job description] --> D[Split into passages]
+  B --> D
+  D --> E[TF-IDF or local MiniLM cosine]
+  B --> F[Skill evidence and priority rules]
+  C --> F
+  E --> G[Weighted alignment score]
+  F --> G
+  G --> H[Evidence / gaps / downloadable report]
+```
+
+There is **no vector database, RAG pipeline, or generative LLM** in this application. Embeddings are compared in memory. Recommendations follow explicit rules. The semantic model is optional; the default hosted configuration uses TF-IDF.
+
 Matchwise helps a candidate compare the evidence in their resume with a job description. It finds recognized skills, shows the text supporting each match, prioritizes missing requirements, and produces a report for the next resume revision or learning plan.
 
 This project is built as an **AI engineer portfolio application**: explainable matching and scoring, an optional local embedding model, defensive document parsing, repeatable evaluation, and a deployable Streamlit interface. The included resume is fictional sample data. It does not represent the project owner's qualifications.
@@ -56,10 +94,10 @@ The configured sentence-transformer model must already be available in the local
 To explicitly download the default model once during setup, with internet access:
 
 ```powershell
-.\.venv\Scripts\python.exe -c "from sentence_transformers import SentenceTransformer; SentenceTransformer('all-MiniLM-L6-v2')"
+.\.venv\Scripts\python.exe scripts/cache_model.py
 ```
 
-Then select semantic mode in the application. For programmatic use, construct `ResumeJDMatcher(use_semantic=True)`. A local model directory can be passed through the constructor's `model_name` argument. Keep the selected model and scoring method consistent when comparing runs.
+The setup script downloads a pinned revision into the Git-ignored `models/all-MiniLM-L6-v2` directory. The app automatically discovers that directory; then select **Use local embedding model**. For programmatic use, construct `ResumeJDMatcher(model_name="models/all-MiniLM-L6-v2", use_semantic=True)`. Keep the selected model and scoring method consistent when comparing runs. Model details: [MiniLM model card](https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2).
 
 The default Docker image includes only the lightweight dependencies. A semantic deployment needs its own optional dependency installation and a readable, pre-populated model cache; merely selecting semantic mode does not install a model.
 
@@ -94,6 +132,16 @@ print(result["overall_match_percentage"])
 The default matching engine uses the Python standard library. Document parsing and the web interface have their own dependencies; the optional embedding stack is isolated in `requirements-semantic.txt`.
 
 ## Verify the project
+
+The actual semantic-versus-lexical experiment is documented in [benchmarks/RESULTS.md](benchmarks/RESULTS.md), with [all inputs and labels](benchmarks/ranking_cases.json) and [raw measurements](benchmarks/results.json). It uses 20 AI-authored contrastive triples, not real applicant data. Reproduce it after the optional model setup:
+
+```powershell
+.\.venv\Scripts\python.exe scripts/compare_methods.py
+```
+
+The runner measures strict pairwise ordering for content and overall scores, counts ties as incorrect, reports failures by category, and refuses to publish if semantic inference falls back. Latency is measured separately from model loading. Results are diagnostic and do not establish recruiting accuracy.
+
+Recorded run: TF-IDF correctly ordered **11/20** pairs using the overall score; MiniLM ordered **13/20**. Median warmed analysis time was **0.45 ms** versus **12.72 ms** on the recorded local CPU environment. Both failed all four keyword-trap examples. MiniLM improved some comparisons but did not solve evidence verification; these results support keeping the fast baseline and showing source evidence prominently.
 
 From the project root, using the Python interpreter in the new environment:
 
@@ -144,6 +192,10 @@ tests/                         Unit tests
 tests/fixtures/matching_cases.json
                                Hand-authored matching regressions
 scripts/evaluate.py            Repeatable regression evaluation
+scripts/compare_methods.py     Real TF-IDF / MiniLM comparison
+scripts/cache_model.py         Explicit pinned model acquisition
+benchmarks/                    Labelled fictional pairs and measured results
+docs/DEPLOYMENT.md             Public demo setup and verification
 requirements.txt               Default web and document dependencies
 requirements-semantic.txt      Optional local embedding dependencies
 Dockerfile                     Non-root application image

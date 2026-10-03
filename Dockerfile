@@ -16,6 +16,7 @@ RUN python -m pip install --no-cache-dir -r requirements.txt
 COPY --chown=app:app app.py config.py ./
 COPY --chown=app:app .streamlit/config.toml ./.streamlit/config.toml
 COPY --chown=app:app src ./src
+COPY --chown=app:app benchmarks ./benchmarks
 COPY --chown=app:app data/sample_resume.txt data/sample_job.txt ./data/
 
 USER app

@@ -158,7 +158,7 @@ class MatcherTests(unittest.TestCase):
         with patch.dict(sys.modules, {"sentence_transformers": fake_module}):
             result = matcher.analyze("Python", "Python")
             matcher.analyze("Python", "Python")
-        factory.assert_called_once_with("all-MiniLM-L6-v2", local_files_only=True, trust_remote_code=False)
+        factory.assert_called_once_with("all-MiniLM-L6-v2", local_files_only=True, trust_remote_code=False, device="cpu")
         self.assertEqual(result["similarity_method"], "lexical_tfidf")
         self.assertIsNone(result["semantic_similarity"])
         self.assertTrue(any("unavailable locally" in warning for warning in result["warnings"]))
